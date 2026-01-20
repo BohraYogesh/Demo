@@ -15,7 +15,7 @@ export default function ConfessionDetail() {
 
   if (!confession) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-300 bg-black">
+      <div className="min-h-screen flex items-center justify-center text-gray-300">
         Loading...
       </div>
     );
