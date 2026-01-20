@@ -28,11 +28,14 @@ export default function ConfessionDetail() {
         <button
           onClick={() => navigate(-1)}
           className="
-            text-indigo-400 
-            hover:text-indigo-300 
-            mb-6
-            text-sm sm:text-base
-          "
+    mb-6 
+    text-sm sm:text-base
+    font-semibold
+    bg-gradient-to-r from-pink-500 to-indigo-500
+    text-transparent bg-clip-text
+    hover:opacity-80 
+    transition
+  "
         >
           ← Back
         </button>
