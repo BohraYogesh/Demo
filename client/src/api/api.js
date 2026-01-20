@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://demo-13r2.vercel.app/",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
-  validateStatus: () => true,  // <-- MOST IMPORTANT LINE
+  validateStatus: () => true,
 });
 
 export default api;
