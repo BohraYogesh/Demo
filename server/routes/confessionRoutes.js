@@ -7,13 +7,35 @@ const router = express.Router();
 
 // Add Confession
 router.post("/", async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  const save = await Confession.create({
-    confession: req.body.confession,
-    senderIP: ip,
-  });
-  res.json({ success: true, data: save });
+  try {
+    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    const { confession, category } = req.body;
+
+    // 🔒 Validation
+    if (!category) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Category is required" });
+    }
+
+    if (!confession) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Confession is required" });
+    }
+
+    const save = await Confession.create({
+      confession,
+      category,
+      senderIP: ip,
+    });
+
+    res.json({ success: true, data: save });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
 });
+
 
 // Get All
 router.get("/", async (req, res) => {

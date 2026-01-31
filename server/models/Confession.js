@@ -1,9 +1,26 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  confession: String,
-  senderIP: String,
-  createdAt: { type: Date, default: Date.now },
+  confession: {
+    type: String,
+    required: true,
+  },
+
+  category: {
+    type: String,
+    enum: ["All", "Happy", "Sad", "Regret", "Funny", "Secret"],
+    default: "All",
+    required: true,
+  },
+
+  senderIP: {
+    type: String,
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export default mongoose.model("Confession", schema);

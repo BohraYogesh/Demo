@@ -1,14 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  @apply font-poppins m-0 p-0 box-border;
-}
+@import "tailwindcss";
 
 /* Desktop Background */
 .bg-custom {
-  background-image: url('/src/assets/bg4.png');
+  background-image: url('/src/assets/bg2.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,7 +13,7 @@ body {
 /* Mobile Background */
 @media (max-width: 768px) {
   .bg-custom {
-    background-image: url('/src/assets/bg5.png');
+    background-image: url('/src/assets/bg2.png');
   }
 }
 
@@ -30,3 +24,4 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
