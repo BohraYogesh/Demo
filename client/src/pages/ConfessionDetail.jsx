@@ -13,6 +13,23 @@ export default function ConfessionDetail() {
     });
   }, [id]);
 
+  const getCategoryBadge = (cat) => {
+    switch (cat) {
+      case "Regret":
+        return "💔 Regret";
+      case "Secret":
+        return "🤫 Secret";
+      case "Happy":
+        return "😊 Happy";
+      case "Funny":
+        return "😂 Funny";
+      case "Sad":
+        return "😢 Sad";
+      default:
+        return cat;
+    }
+  };
+
   if (!confession) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-400">
@@ -22,7 +39,7 @@ export default function ConfessionDetail() {
   }
 
   return (
-    <div className="min-h-screen p-4 sm:p-6 bg-linear-to-b from-[#F6E7D8] to-[#F1DCC9] text-[#3A1F0A]">
+    <div className="min-h-screen p-4 sm:p-6 bg-gradient-to-b from-[#F6E7D8] to-[#F1DCC9] text-[#3A1F0A]">
       {/* PAGE WRAPPER */}
       <div className="max-w-3xl mx-auto mt-6 sm:mt-12">
         {/* GLASS CARD */}
@@ -48,6 +65,7 @@ export default function ConfessionDetail() {
               color: "#E8D3A8",
             }}
           >
+            {getCategoryBadge(confession.category)}
           </span>
 
           {/* CONFESSION TEXT */}
