@@ -126,7 +126,7 @@ export default function Home() {
 
       {/* Empty State */}
       {data.length === 0 && (
-        <p className="text-gray-300 text-center mt-10 text-lg sm:text-xl">
+        <p className="text-white text-center mt-10 text-lg sm:text-xl">
           No confessions yet… Be the first 💬
         </p>
       )}

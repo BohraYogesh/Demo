@@ -12,6 +12,11 @@ const schema = new mongoose.Schema({
     default: "All",
     required: true,
   },
+  
+  avatar: {
+    type: String,
+    required: true,
+  },
 
   senderIP: {
     type: String,

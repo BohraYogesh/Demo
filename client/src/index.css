@@ -25,3 +25,16 @@
   overflow: hidden;
 }
 
+.custom-textarea::placeholder {
+  color: white !important;
+  opacity: 1 !important;
+}
+
+.avatar-active {
+  border: 2px solid #6E1616 !important;
+}
+
+.avatar-default {
+  border: 1px solid rgba(201,168,106,0.6) !important;
+}
+

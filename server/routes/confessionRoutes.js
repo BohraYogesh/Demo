@@ -9,9 +9,14 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-    const { confession, category } = req.body;
+    const { confession, category, avatar } = req.body;
 
     // 🔒 Validation
+        if (!avatar) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Avatar is required" });
+    }
     if (!category) {
       return res
         .status(400)
@@ -27,6 +32,7 @@ router.post("/", async (req, res) => {
     const save = await Confession.create({
       confession,
       category,
+      avatar,
       senderIP: ip,
     });
 

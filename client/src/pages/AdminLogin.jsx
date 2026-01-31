@@ -29,7 +29,9 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="bg-white/20 backdrop-blur-xl border border-white/30 p-8 rounded-3xl max-w-sm w-full shadow-xl">
-        <h2 className="text-2xl text-pink-700 font-semibold mb-4 text-center">
+        <h2 className="text-2xl text-pink-700 font-semibold mb-4 text-center"
+        style={{color: "#3B240C",fontFamily: "'Dancing Script', cursive",
+              fontWeight: "bold",}}>
           Admin Login
         </h2>
 
@@ -39,7 +41,7 @@ export default function AdminLogin() {
 
         {/* Username */}
         <input
-          className="w-full mb-4 p-3 rounded-xl bg-transparent border border-white/40 text-gray-800 outline-none focus:border-pink-400"
+          className="w-full mb-4 p-3 rounded-xl bg-transparent border border-white/40 text-gray-800 outline-none"
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -48,7 +50,7 @@ export default function AdminLogin() {
         <div className="relative mb-5">
           <input
             type={showPassword ? "text" : "password"}
-            className="w-full p-3 pr-12 rounded-xl bg-transparent border border-white/40 text-gray-800 outline-none focus:border-pink-400"
+            className="w-full p-3 pr-12 rounded-xl bg-transparent border border-white/40 text-gray-800 outline-none"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -57,7 +59,7 @@ export default function AdminLogin() {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 hover:text-pink-500"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700"
           >
             {showPassword ? (
               <AiOutlineEyeInvisible size={22} />
@@ -70,7 +72,8 @@ export default function AdminLogin() {
         {/* Login Button */}
         <button
           onClick={login}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-500 text-white font-semibold hover:opacity-90 transition"
+          className="w-full py-3 rounded-xl text-white font-semibold hover:opacity-90 transition"
+          style={{ backgroundColor: "#6E1616", color: "#E8D3A8" }}
         >
           Login
         </button>

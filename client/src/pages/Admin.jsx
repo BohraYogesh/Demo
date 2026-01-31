@@ -35,7 +35,6 @@ export default function Admin() {
     }
   };
 
-  // Category Badge
   const getCategoryBadge = (cat) => {
     switch (cat) {
       case "Regret":
@@ -53,7 +52,6 @@ export default function Admin() {
     }
   };
 
-  // Filters
   const categoryFilters = [
     { name: "All", label: "🌟 All" },
     { name: "Happy", label: "😊 Happy" },
@@ -68,7 +66,6 @@ export default function Admin() {
 
   return (
     <div className="max-w-5xl mx-auto p-4 min-h-screen">
-
       {/* HEADER */}
       <h1
         className="text-4xl sm:text-5xl text-center font-extrabold mb-2"
@@ -84,16 +81,16 @@ export default function Admin() {
         Manage All Confessions
       </h2>
 
-      {/* TOTAL COUNT */}
+      {/* COUNT */}
       <p
         className="text-center mb-8 text-sm sm:text-base font-medium"
         style={{ color: "#4A2B0C" }}
       >
-        Total Confessions:{" "}
-        <span className="font-bold text-[#6E1616]">{filteredData.length}</span>
+        Total Confessions:
+        <span className="font-bold text-[#6E1616]"> {filteredData.length}</span>
       </p>
 
-      {/* CATEGORY FILTER */}
+      {/* FILTER BUTTONS */}
       <div className="flex flex-wrap gap-3 justify-center mb-8">
         {categoryFilters.map((cat) => {
           const active = filter === cat.name;
@@ -116,45 +113,76 @@ export default function Admin() {
         })}
       </div>
 
-      {/* CONFESSION GRID */}
+      {/* CONFESSIONS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {filteredData.map((confession) => (
           <div
             key={confession._id}
             className="
-              relative
-              bg-[rgba(255,255,255,0.25)]
-              backdrop-blur-xl
-              border border-[#C9A86A]/40
-              rounded-2xl p-6 shadow-lg 
+              relative bg-[rgba(255,255,255,0.25)] backdrop-blur-xl
+              border border-[#C9A86A]/40 rounded-2xl p-6 shadow-lg
               hover:shadow-2xl hover:-translate-y-1 transition-all
             "
           >
-            {/* SEAL OVERLAY */}
+            {/* SEAL */}
             <img
               src={seal}
               alt="seal"
               className="
-                absolute left-1/2 top-1/2
-                -translate-x-1/2 -translate-y-1/2
-                w-80 h-60 opacity-50
-                pointer-events-none
-                animate-fade-in
-              "
-              style={{ zIndex: 30 }}
+    absolute left-1/2 top-1/2
+    -translate-x-1/2 -translate-y-1/2
+    pointer-events-none animate-fade-in
+    opacity-40
+  "
+              style={{
+                zIndex: 30,
+                width: "60%", // mobile/tablet responsive width
+                maxWidth: "280px", // on large screens
+                height: "auto",
+              }}
             />
 
-            {/* CATEGORY BADGE */}
-            <span
-              className="inline-block px-3 py-1 rounded-full mb-3 text-xs font-semibold relative"
-              style={{
-                backgroundColor: "#6E1616",
-                color: "#E8D3A8",
-                zIndex: 40,
-              }}
+            {/* ⭐ TOP BAR (Avatar Left | Category Center | Trash Right) */}
+            <div
+              className="relative flex items-center justify-between mb-4"
+              style={{ zIndex: 40 }}
             >
-              {getCategoryBadge(confession.category)}
-            </span>
+              {/* LEFT → Avatar */}
+              <img
+                src={confession.avatar}
+                alt="avatar"
+                className="w-12 h-12 rounded-full object-cover border border-[#6E1616]"
+              />
+
+              {/* CENTER → Category (Perfect center absolute) */}
+              <span
+                className="
+                  absolute left-1/2 -translate-x-1/2
+                  px-3 py-1 text-xs sm:text-sm 
+                  rounded-full font-semibold
+                "
+                style={{
+                  backgroundColor: "#6E1616",
+                  color: "#E8D3A8",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {getCategoryBadge(confession.category)}
+              </span>
+
+              {/* RIGHT → Delete */}
+              <button
+                onClick={() => openModal(confession._id)}
+                className="
+                  p-2 bg-[#6E1616] text-[#E8D3A8]
+                  rounded-full shadow-md
+                  hover:scale-110 active:scale-95 transition
+                "
+                style={{ zIndex: 50 }}
+              >
+                <FiTrash2 />
+              </button>
+            </div>
 
             {/* CONFESSION TEXT */}
             <p
@@ -171,25 +199,11 @@ export default function Admin() {
             >
               {new Date(confession.createdAt).toLocaleString()}
             </p>
-
-            {/* DELETE BUTTON */}
-            <button
-              onClick={() => openModal(confession._id)}
-              className="
-                absolute top-3 right-3
-                p-2 bg-[#6E1616] text-[#E8D3A8]
-                rounded-full shadow-md
-                hover:scale-110 active:scale-95 transition
-              "
-              style={{ zIndex: 50 }}
-            >
-              <FiTrash2 />
-            </button>
           </div>
         ))}
       </div>
 
-      {/* EMPTY */}
+      {/* NO DATA */}
       {filteredData.length === 0 && (
         <p className="text-center mt-10 text-lg" style={{ color: "#6B4F30" }}>
           No confessions found…
@@ -201,14 +215,10 @@ export default function Admin() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur flex items-center justify-center px-4">
           <div
             className="
-              w-full max-w-sm  
-              p-6 text-center 
-              bg-cover bg-center bg-no-repeat
+              w-full max-w-sm p-6 text-center bg-cover bg-center bg-no-repeat
               relative overflow-hidden
             "
-            style={{
-              backgroundImage: `url(${bg01})`,
-            }}
+            style={{ backgroundImage: `url(${bg01})` }}
           >
             <h3
               className="text-lg sm:text-xl font-bold"
@@ -245,7 +255,6 @@ export default function Admin() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
